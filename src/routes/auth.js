@@ -21,6 +21,7 @@ const oAuthCallback = {
 		if ( !request.auth.isAuthenticated ) {
 			throw boom.unauthorized( `Authentication failed: ${ request.auth.error.message }` );
 		}
+		// save the credentials to the session cookie
 		request.cookieAuth.set( request.auth.credentials );
 		return h.redirect( "/" );
 	},
@@ -51,7 +52,7 @@ const logout = {
 	}
 };
 
-module.exports = [ 
+module.exports = [
 	login,
 	oAuthCallback,
 	logout

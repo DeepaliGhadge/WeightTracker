@@ -15,14 +15,14 @@ const addMeasurementForCurrentUser = {
 			const userId = request.auth.credentials.profile.id;
 			const { measureDate, weight } = request.payload;
 			const res = await h.sql`INSERT INTO measurements
-				( user_id, measure_date, weight )
-				VALUES
-				( ${ userId }, ${ measureDate }, ${ weight } )
-		
-				RETURNING
-					id
-					, measure_date AS "measureDate"
-					, weight`;
+        ( user_id, measure_date, weight )
+        VALUES
+        ( ${ userId }, ${ measureDate }, ${ weight } )
+
+        RETURNING
+            id
+            , measure_date AS "measureDate"
+            , weight`;
 			return res.count > 0 ? res[0] : boom.badRequest();
 		} catch ( err ) {
 			console.log( err );
@@ -51,13 +51,13 @@ const allMeasurementsForCurrentUser = {
 			}
 			const userId = request.auth.credentials.profile.id;
 			const measurements = await h.sql`SELECT
-					id
-					, measure_date AS "measureDate"
-					, weight
-				FROM  measurements
-				WHERE user_id = ${ userId }
-				ORDER BY
-					measure_date`;
+            id
+            , measure_date AS "measureDate"
+            , weight
+        FROM  measurements
+        WHERE user_id = ${ userId }
+        ORDER BY
+            measure_date`;
 			return measurements;
 		} catch ( err ) {
 			console.log( err );
@@ -81,9 +81,9 @@ const deleteMeasurementForCurrentUserById = {
 			const userId = request.auth.credentials.profile.id;
 			const id = request.params.id;
 			const res = await h.sql`DELETE
-				FROM  measurements
-				WHERE id = ${ id }
-					AND user_id = ${ userId }`;
+        FROM  measurements
+        WHERE id = ${ id }
+            AND user_id = ${ userId }`;
 			return res.count > 0 ? h.response().code( 204 ) : boom.notFound();
 		}
 		catch( err ) {
@@ -113,12 +113,12 @@ const getMeasurementForCurrentUserById = {
 			const userId = request.auth.credentials.profile.id;
 			const id = request.params.id;
 			const res = await h.sql`SELECT
-				id
-				, measure_date AS "measureDate"
-				, weight
-			FROM  measurements
-			WHERE user_id = ${ userId }
-				AND id = ${ id }`;
+            id
+            , measure_date AS "measureDate"
+            , weight
+        FROM  measurements
+        WHERE user_id = ${ userId }
+            AND id = ${ id }`;
 			return res.count > 0 ? res[0] : boom.notFound();
 		} catch ( err ) {
 			console.log( err );
@@ -148,15 +148,15 @@ const updateMeasurementForCurrentUserById = {
 			const id = request.params.id;
 			const { measureDate, weight } = request.payload;
 			const res = await h.sql`UPDATE measurements
-				SET measure_date = ${ measureDate }
-					, weight = ${ weight }
-				WHERE id = ${ id }
-				AND user_id = ${ userId }
+        SET measure_date = ${ measureDate }
+            , weight = ${ weight }
+        WHERE id = ${ id }
+        AND user_id = ${ userId }
 
-				RETURNING
-				id
-				, measure_date AS "measureDate"
-				, weight`;
+        RETURNING
+        id
+        , measure_date AS "measureDate"
+        , weight`;
 			return res.count > 0 ? res[0] : boom.notFound();
 		}
 		catch( err ) {

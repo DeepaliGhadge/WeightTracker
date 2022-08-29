@@ -7,7 +7,7 @@ const ejs = require( "ejs" );
 const auth = require( "./auth" );
 const sql = require( "./sql" );
 
-module.exports = { 
+module.exports = {
 	register: async server => {
 		await server.register( [ Inert, Vision, auth, sql ] );
 

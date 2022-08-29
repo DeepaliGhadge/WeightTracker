@@ -6,7 +6,7 @@ const postgres = require( "postgres" );
 const init = async () => {
 	// read environment variables
 	dotenv.config();
-  
+
 	try {
 		// connect to the local database server
 		const sql = postgres();
@@ -16,11 +16,11 @@ const init = async () => {
 
 		console.log( "creating table..." );
 		await sql`CREATE TABLE IF NOT EXISTS measurements (
-			id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY
-			, user_id varchar(50) NOT NULL
-			, measure_date date NOT NULL
-			, weight numeric(5,1) NOT NULL
-		)`;
+      id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY
+      , user_id varchar(50) NOT NULL
+      , measure_date date NOT NULL
+      , weight numeric(5,1) NOT NULL
+    )`;
 
 		await sql.end();
 	} catch ( err ) {
