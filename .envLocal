@@ -1,4 +1,4 @@
-#host configurations
+
 
 #PORT=3000
 #HOST=localhost
@@ -6,7 +6,7 @@
 #COOKIE_ENCRYPT_PWD=superAwesomePasswordStringThatIsAtLeast32CharactersLong!
 #NODE_ENV=development
 
-
+#host configurations
 PORT=8080
 HOST=34.123.42.237
 HOST_URL=http://34.123.42.237:8080
@@ -14,19 +14,19 @@ COOKIE_ENCRYPT_PWD=superAwesomePasswordStringThatIsAtLeast32CharactersLong!
 NODE_ENV=development
 
 
-# Postgres configuration
+
 # PGHOST=localhost
 # PGUSERNAME=postgres
 # PGDATABASE=postgres
 # PGPASSWORD=Sela@123
 # PGPORT=5432
 
+# Postgres configuration
 PGHOST=34.123.42.237
 PGUSERNAME=postgres
 PGDATABASE=postgres
 PGPASSWORD=Sela@123
 PGPORT=5432
-
 
 
 # Okta configuration
